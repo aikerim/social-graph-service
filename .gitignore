@@ -1,0 +1,9 @@
+## .gitignore 
+# node modules
+node_modules 
+# build 
+/build 
+# environment variables 
+.env
+.DS_store
+
