@@ -1,7 +1,7 @@
 version: 2
 jobs: 
   build: 
-    working_directory: twittler-2.0/social_graph_service
+    working_directory: aikerim/social_graph_service
     docker: 
       - image: circleci/node:7
     steps: 
