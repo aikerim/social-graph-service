@@ -1,4 +1,0 @@
-machine:
-  post:
-    - ./daemon:
-          background: true
