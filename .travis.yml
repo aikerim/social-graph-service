@@ -3,4 +3,4 @@ node_js:
 - 8.4.0
 before_script:
 - npm run build
-script: node ./server/index.js & npm run test
+script: node ./build/server/index.js & npm run test
