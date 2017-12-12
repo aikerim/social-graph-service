@@ -10,7 +10,8 @@ localserver.use('/', router);
 // const PORT = process.env.PORT || 8080; 
 const port = process.env.PORT || 8080; 
 
-
-localserver.listen(port); 
+if (!module.parent) {
+    localserver.listen(port); 
+}
 console.log(`Listening at http://localhost:${port}`);
 module.exports = localserver;
