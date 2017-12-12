@@ -11,7 +11,7 @@
     "build:watch": "babel ./server -d build/server --watch",
     "start:dev": "parallelshell 'npm run build:watch' 'nodemon ./build/server/index.js' ",
     "build:prod": "npm run build",
-    "start": "npm run build:prod && node ./build/server/index.js && npm test ",
+    "start": "npm run build:prod && NODE_ENV=production node ./build/server/index.js",
     "test": "./node_modules/.bin/mocha --exit"
   },
   "author": "Aygerim Sauletkhan",
