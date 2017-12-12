@@ -7,8 +7,8 @@ const localserver = express();
 
 // console.log('dotenv: ', process.env.PORT)
 localserver.use('/', router);
-const port = process.env.PORT || 8080; 
+const PORT = process.env.PORT || 8080; 
 
 localserver.listen(port); 
-console.log(`Listening at http://localhost:${port}`);
+console.log(`Listening at http://localhost:${PORT}`);
 export default localserver;

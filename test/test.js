@@ -1,9 +1,10 @@
 var supertest = require("supertest");
 var should = require("chai").should();
 var dotenv = require('dotenv')
+var PORT = process.env.PORT || 3000
 // This agent refers to PORT where program is runninng.
 dotenv.config()
-var server = supertest.agent("http://localhost:"+process.env.PORT);
+var server = supertest.agent("http://localhost:"+PORT);
 
 // UNIT test begin
 
