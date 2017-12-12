@@ -1,9 +1,7 @@
-// var express = require('express'); 
-// var dotenv = require('dotenv');
-// var router = require('./routes'); 
-import express from 'express'; 
-import dotenv from 'dotenv'; 
-import router from './routes';
+var express = require('express'); 
+var dotenv = require('dotenv');
+var router = require('./routes'); 
+
 // config({path: 'custom/path/to/your/env/var'})
 dotenv.config();
 const localserver = express(); 
@@ -18,4 +16,4 @@ if (!module.parent) {
 }
 console.log(`Listening at http://localhost:${port}`);
 // module.exports = localserver;
-export default localserver; 
+module.exports = localserver
