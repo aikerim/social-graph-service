@@ -2,8 +2,6 @@ language: node_js
 node_js:
 - 8.4.0
 before_script:
-- npm run build:prod
-- node ./build/server/index.js
-script: 
-  # node ./build/server/index.js 
-  npm run test
+#- npm run build
+script: node ./server/index.js & npm run test
+  
