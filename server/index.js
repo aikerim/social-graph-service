@@ -1,6 +1,6 @@
-import express from 'express'; 
-import dotenv from 'dotenv';
-import router from './routes' 
+var express = require('express'); 
+var dotenv = require('dotenv');
+var router = require('./routes'); 
 // config({path: 'custom/path/to/your/env/var'})
 dotenv.config();
 const localserver = express(); 
@@ -13,4 +13,4 @@ const port = process.env.PORT || 8080;
 
 localserver.listen(port); 
 console.log(`Listening at http://localhost:${port}`);
-export default localserver;
+module.exports = localserver;
