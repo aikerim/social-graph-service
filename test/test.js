@@ -1,26 +1,14 @@
-var supertest = require("supertest");
-var should = require("chai").should();
-var dotenv = require('dotenv')
-var PORT = process.env.PORT || 8080
-// This agent refers to PORT where program is runninng.
-dotenv.config()
-// console.log('environment port: ', process.env.PORT)
-var server = supertest.agent("http://localhost:"+PORT);
+const supertest = require('supertest');
+const expect = require('chai').expect;
+const server = require('../Server/serverIndex.js');
 
-// UNIT test begin
-
-describe("SAMPLE unit test", function () {
-
+describe('initialize test', () => {
     // #1 should return home page
-
-    it("should return home page", function (done) {
-
+    it('should say hello world at server initiation', (done) => {
         // calling home page api
-        server
-            .get("/")
+        supertest(server)
+            .get('/')
             // .expect("Content-type", /json/)
-            .expect(200,done) // THis is HTTP response
-    
+            .expect(200, done); // THis is HTTP response
     });
-
 });
