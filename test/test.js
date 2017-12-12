@@ -4,7 +4,6 @@ const axios = require('axios');
 require('dotenv').config();
 
 const baseUrl = `http://localhost:${process.env.PORT}`;
-
 describe('GET /', () => {
     it('responds with a status code of 200', (done) => {
         axios.get(`${baseUrl}/`)
