@@ -10,5 +10,5 @@ localserver.use('/', router);
 const port = process.env.PORT || 8080; 
 
 localserver.listen(port); 
-console.log(`Listening at http: //localhost: ${port}`);
+console.log(`Listening at http://localhost:${port}`);
 export default localserver;
