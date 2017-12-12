@@ -1,6 +1,6 @@
 const supertest = require('supertest');
 const expect = require('chai').expect;
-const server = require('../server/server.js');
+const server = require('../server/index.js');
 
 describe('initialize test', () => {
     // #1 should return home page
