@@ -2,7 +2,7 @@
 // var dotenv = require('dotenv');
 // var router = require('./routes'); 
 import express from 'express'; 
-import express from 'dotenv'; 
+import dotenv from 'dotenv'; 
 import router from './routes';
 // config({path: 'custom/path/to/your/env/var'})
 dotenv.config();
