@@ -1,6 +1,6 @@
 var express = require('express');
 var Router = express.Router;
-var fetchNodeConnections = require('../../database/fetchNodeConnections.js')
+var fetchNodeConnections = require('./fetchNodeConnections')
 var getTweetInteractors = require('./getTweetInteractors.js')
 var axios = require('axios')
 // var requestTweetInteractors = require('./requestTweetInteractors')

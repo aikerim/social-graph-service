@@ -1,7 +1,7 @@
 const supertest = require('supertest');
 const expect = require('chai').expect;
 const server = require('../server/index.js');
-
+console.log("server: ", server)
 describe('initialize test', () => {
     // #1 should return home page
     it('should say hello world at server initiation', (done) => {
