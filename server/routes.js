@@ -1,7 +1,7 @@
 var express = require('express');
 var Router = express.Router;
-var fetchNodeConnections = require('./fetchNodeConnections')
-var getTweetInteractors = require('./getTweetInteractors.js')
+var fetchNodeConnections = require('./helpers/fetchNodeConnections')
+var getTweetInteractors = require('./helpers/getTweetInteractors.js')
 var axios = require('axios')
 // var requestTweetInteractors = require('./requestTweetInteractors')
 const router = Router();
@@ -40,10 +40,9 @@ router.get('/followers', (req, res) => {
     fetchNodeConnections(user_id, callback);
     
 })
-router.get('/friendConfirmation', (req, res) => { 
+router.get('/friendConfirmation', (req, res) => {
     const computeCommonality = function (arr1, arr2) {
         var results = [];
-
         for (var i = 0; i < arr1.length; i++) {
             if (arr2.indexOf(arr1[i]) !== -1) {
                 results.push(arr1[i]);
@@ -51,24 +50,30 @@ router.get('/friendConfirmation', (req, res) => {
         }
         return results;
     }
+    const inputTweets = JSON.parse(req.query.tweet_ids);
+    const finalresult = [];
     const user_id = Number(req.query.user_id);
-    const tweet_id = Number(req.query.tweet_id);
-    var callback = function (nodeConnections) {
-        var result; 
-        var callback1 = function(tweetInteractors) { 
-            // console.log("tweet interactors: ", tweetInteractors.length)
-            // console.log('user followers: ', nodeConnections.length)
-            result = computeCommonality(nodeConnections, tweetInteractors).length === 0 ? false : true;
-            // console.log('computing ...', result)
-
-            res.status(200).send(JSON.stringify({'promoted': result}))
+    var tweet_id;
+    const callback = function (connections) {
+        var nodeconnections = connections;
+        var finalTweetInteractor = [];
+        var result;
+        var callbackNext = function (tweetInteractors) {
+            result = computeCommonality(nodeconnections, tweetInteractors).length === 0 ? false : true;
+            finalTweetInteractor.push(result);
+            // finalTweetInteractor.push(tweetInteractors);
+            if (finalTweetInteractor.length === inputTweets.length) {
+                // console.log("Done: ", finalTweetInteractor)
+                res.status(200).send(JSON.stringify(finalTweetInteractor))
+            }
         }
-        getTweetInteractors(tweet_id, callback1);
-                
-    }    
-    fetchNodeConnections(user_id, callback);
-    // console.log("ids: ", user_id, tweet_id)
-  
+        for (var i = 0; i < inputTweets.length; i++) {
+            tweet_id = Number(inputTweets[i])
+            getTweetInteractors(tweet_id, callbackNext)
+        }
+
+    }
+    fetchNodeConnections(user_id, callback)
 })
 
 //simulating the tweet service: 7 followers of id 1 

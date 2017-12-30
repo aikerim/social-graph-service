@@ -2,7 +2,7 @@ const neo4j = require('neo4j-driver').v1;
 
 var fetchNodeConnections = function (user_id, callback) {
     
-    const driver = neo4j.driver("bolt://localhost", neo4j.auth.basic("neo4j", "neo4j"))
+    const driver = neo4j.driver("bolt://18.218.30.225:7687", neo4j.auth.basic("neo4j", "aygerim"))
     const session = driver.session();
     var findFollows = session.run(
         'match (u: tweetUsers {id: $id})-[r:follows]->(all: tweetUsers) return all',
@@ -29,5 +29,6 @@ var fetchNodeConnections = function (user_id, callback) {
     })
     // console.log("Find follows: ", findFollows)
 }
+fetchNodeConnections(1)
 
 module.exports = fetchNodeConnections
